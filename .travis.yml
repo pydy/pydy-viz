@@ -5,6 +5,7 @@ virtualenv:
   system_site_packages: true
 before_install:
   - sudo apt-get install -qq python-matplotlib
+  - sudo apt-get install nodejs
   - sudo apt-get install -qq phantomjs
   - sudo apt-get install -qq npm
   - npm install grunt
