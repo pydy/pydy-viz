@@ -6,7 +6,7 @@ from pydy_viz.shapes import Cylinder
 from pydy_viz.visualization_frame import VisualizationFrame
 from pydy_viz.camera import PerspectiveCamera, OrthoGraphicCamera
 from pydy_viz.scene import Scene
-
+#from pydy_viz.light import PointLight
 
 from numpy import radians
 from numpy.testing import assert_allclose
