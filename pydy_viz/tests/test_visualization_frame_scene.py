@@ -335,6 +335,56 @@ class TestVisualizationFrameScene(object):
         assert camera1.near == 1
         assert camera1.far == 1000
 
+def test_point_light(self):
+        
+        #Testing with rigid-body ..
+        light = PointLight('light', self.rigid_body, color='blue')
+                                                 
+
+        assert light.name == 'light'
+        assert light.reference_frame == self.A
+        assert light.origin == self.P1
+        assert light.color == 'blue'
+
+        #Testing with reference_frame, particle ..
+        light = PointLight('light', self.I, self.particle, color='blue')
+
+        assert light.name == 'light'
+        assert light.reference_frame == self.I
+        assert light.origin == self.P1
+        assert light.color == 'blue'
+
+        #Testing with reference_frame, point ..
+        light = PointLight('light', self.I, self.O, color='blue')
+
+        assert light.name == 'light'
+        assert light.reference_frame == self.I
+        assert light.origin == self.O
+        assert light.color == 'blue'
+        
+
+        light.name = 'light1'
+        assert light.name == 'light1'
+        assert light.__str__() == 'PointLight: light1'
+        assert light.__repr__() == 'PointLight'
+
+        light.reference_frame = self.A
+        assert light.reference_frame == self.A
+
+        light.origin = self.P1
+        assert light.origin == self.P1
+
+        light.color = 'red'
+        assert light.fov == 'red'
+
+        
+        #Test unnamed
+        light1 = PointLight(self.I, self.O)
+        assert light1.name == 'unnamed'
+        assert light1.reference_frame == self.I
+        assert light1.origin == self.O
+        assert light1.color == 'white'
+
     def test_scene_init(self):
         self.scene2 = Scene(self.I, self.O, \
                             self.global_frame1, self.global_frame2, \
