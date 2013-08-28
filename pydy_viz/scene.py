@@ -2,6 +2,7 @@ __all__ = ['Scene']
 from sympy.physics.mechanics import ReferenceFrame, Point
 from visualization_frame import VisualizationFrame
 from camera import PerspectiveCamera
+from light import PointLight
 from server import Server
 import json
 import os
@@ -83,6 +84,11 @@ class Scene(object):
         camera with which to display the object. Default is
         PerspectiveCamera, with reference_frame and origin same
         as defined for this scene.
+
+        light : Light, optional
+
+        light used in the objects.Default is
+        PointLight, placed at the origin of the scene, and white in color.
         """
 
         self._reference_frame = reference_frame
@@ -115,9 +121,9 @@ class Scene(object):
         try:
             self.lights = kwargs['lights']
         except KeyError:
-            #TODO lights
-            self.lights = []
-
+            self.lights = [PointLight(self._reference_frame,  \
+                                    self._origin.locatenew('p_camera', \
+                                         10*self._reference_frame.z))]
     @property
     def name(self):
         """

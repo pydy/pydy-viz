@@ -6,7 +6,7 @@ from pydy_viz.shapes import Cylinder
 from pydy_viz.visualization_frame import VisualizationFrame
 from pydy_viz.camera import PerspectiveCamera, OrthoGraphicCamera
 from pydy_viz.scene import Scene
-#from pydy_viz.light import PointLight
+from pydy_viz.light import PointLight
 
 
 from numpy import radians
@@ -213,7 +213,7 @@ class TestVisualizationFrameScene(object):
         #Camera is a subclass of VisualizationFrame, but without any
         #specific shape attached. We supply only ReferenceFrame,Point
         #to camera. and it inherits methods from VisualizationFrame
-        
+
         #Testing with rigid-body ..
         camera = PerspectiveCamera('camera', self.rigid_body, fov=45, \
                                                  near=1, far=1000)
@@ -338,7 +338,7 @@ class TestVisualizationFrameScene(object):
     def test_point_light(self):
         #Testing with rigid-body ..
         light = PointLight('light', self.rigid_body, color='blue')
-                                                 
+
 
         assert light.name == 'light'
         assert light.reference_frame == self.A
@@ -360,7 +360,7 @@ class TestVisualizationFrameScene(object):
         assert light.reference_frame == self.I
         assert light.origin == self.O
         assert light.color == 'blue'
-        
+
 
         light.name = 'light1'
         assert light.name == 'light1'
@@ -376,14 +376,14 @@ class TestVisualizationFrameScene(object):
         light.color = 'red'
         assert light.color == 'red'
 
-        
+
         #Test unnamed
         light1 = PointLight(self.I, self.O)
         assert light1.name == 'unnamed'
         assert light1.reference_frame == self.I
         assert light1.origin == self.O
         assert light1.color == 'white'
-    
+
     def test_scene_init(self):
         self.scene2 = Scene(self.I, self.O, \
                             self.global_frame1, self.global_frame2, \

@@ -6,7 +6,6 @@ import numpy as np
 from sympy.matrices.expressions import Identity
 from sympy import Dummy, lambdify
 
-
 class VisualizationFrame(object):
     """
     A VisualizationFrame represents an object that you want to visualize.
