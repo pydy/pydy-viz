@@ -2,6 +2,7 @@ __all__ = ['Scene']
 from sympy.physics.mechanics import ReferenceFrame, Point
 from visualization_frame import VisualizationFrame
 from camera import PerspectiveCamera
+from light import PointLight
 from server import Server
 import json
 import os
@@ -83,6 +84,11 @@ class Scene(object):
         camera with which to display the object. Default is
         PerspectiveCamera, with reference_frame and origin same
         as defined for this scene.
+
+        light : Light, optional
+
+        light used in the objects.Default is
+        PointLight, placed at the origin of the scene, and white in color.
         """
 
         self._reference_frame = reference_frame
@@ -115,9 +121,9 @@ class Scene(object):
         try:
             self.lights = kwargs['lights']
         except KeyError:
-            #TODO add Light
-            pass
-
+            self.lights = [PointLight(self._reference_frame,  \
+                                    self._origin.locatenew('p_camera', \
+                                         10*self._reference_frame.z))]
     @property
     def name(self):
         """
@@ -216,9 +222,9 @@ class Scene(object):
         self._scene_data['width'] = self._width
         self._scene_data['frames'] = []
         self._scene_data['cameras'] = []
+        self._scene_data['lights'] = []
 
-        for frame in self.visualization_frames + self.cameras:
-
+        for frame in self.visualization_frames:
             frame.generate_transformation_matrix( \
                                     self._reference_frame, self._origin)
             frame.generate_numeric_transform_function( \
@@ -226,12 +232,30 @@ class Scene(object):
             frame.evaluate_transformation_matrix( \
                                         dynamic_values, constant_values)
 
-            if isinstance(frame, VisualizationFrame):
-                self._scene_data['frames'].append( \
+            self._scene_data['frames'].append( \
                                     frame.generate_visualization_dict())
-            else:
-                self._scene_data['cameras'].append( \
-                                    frame.generate_visualization_dict())
+
+        for camera in self.cameras:
+            camera.generate_transformation_matrix( \
+                                    self._reference_frame, self._origin)
+            camera.generate_numeric_transform_function( \
+                                  dynamic_variables, constant_variables)
+            camera.evaluate_transformation_matrix( \
+                                        dynamic_values, constant_values)
+
+            self._scene_data['cameras'].append( \
+                                    camera.generate_visualization_dict())
+
+        for light in self.lights:
+            light.generate_transformation_matrix( \
+                                    self._reference_frame, self._origin)
+            light.generate_numeric_transform_function( \
+                                  dynamic_variables, constant_variables)
+            light.evaluate_transformation_matrix( \
+                                        dynamic_values, constant_values)
+
+            self._scene_data['lights'].append( \
+                                    light.generate_visualization_dict())
 
 
         return self._scene_data
