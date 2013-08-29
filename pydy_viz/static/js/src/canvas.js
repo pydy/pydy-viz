@@ -77,3 +77,32 @@ Canvas.prototype.initialize = function(){
     this.scene.add(this.axes);
 
 };
+
+Canvas.prototype.add_cameras = function(){
+    var aspect_ratio = this.width/this.height;
+    for(var camera in JSONObj.cameras){
+        var initialOrientation = camera.simulation_matrix[0];
+        switch(camera.type)
+        {
+            
+            case "PerspectiveCamera":
+                var _camera = THREE.PerspectiveCamera(camera.fov, \
+                                aspect_ratio, camera.near, camera.far);
+                _camera.matrix.elements = initialOrientation;
+                break;
+            
+            case "OrthoGraphicCamera":
+                var _camera = new THREE.OrthographicCamera( \
+                                           JSONObj.width / - 2, \
+                                           JSONObj.width / 2, \
+                                           JSONObj.height / 2, \
+                                           JSONObj.height / - 2, \
+                                           camera.near, camera.far );
+                _camera.matrix.elements = initialOrientation;                    
+                break;
+
+        }
+        this.cameras.add(_camera);
+        
+    }
+};
