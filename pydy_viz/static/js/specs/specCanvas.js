@@ -1,1 +1,1 @@
-// This is the main file for holding all specs for Canvas class
+// File for holding all specs for Canvas Class
