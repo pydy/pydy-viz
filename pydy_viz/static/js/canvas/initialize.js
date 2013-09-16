@@ -1,4 +1,11 @@
 var Canvas = function(JSONObj) {
+ /**
+ * This function acts as a class constructor for Canvas class
+ * It takes the JSON Object variable as the argument, which contains
+ * all the data in the JSON format.
+ * It binds onClick methods of certain Divs on the frontend
+ * with some Canvas.prototype functions.
+ */
     var renderer, scene, primaryCamera, primaryControls
 
     $("#resetControls").click(this.resetControls);      
@@ -37,7 +44,13 @@ Canvas.prototype.cameraCounter = 0;
 
 Canvas.prototype.animationSpeed = parseInt($("#animationSpeed").val())
 Canvas.prototype.initialize = function(){
-
+    /**
+    * This function acts as a class constructor for Canvas class
+    * It takes the JSON Object variable as the argument, which contains
+    * all the data in the JSON format.
+    * It binds onClick methods of certain Divs on the frontend
+    * with some Canvas.prototype functions.
+    */
 
 	this.renderer = new THREE.WebGLRenderer();
 	this.renderer.setSize(JSONObj.width, JSONObj.height);
