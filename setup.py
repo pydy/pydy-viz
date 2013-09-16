@@ -11,12 +11,8 @@ setup(
     keywords="dynamics multibody simulation visualization",
     license='LICENSE.txt',
     packages=find_packages(),
-    install_requires=['sympy>=0.7.2', 'numpy'],#, 'matplotlib'],
-    # For some reason matplotlib doesn't install if numpy isn't already
-    # installed, even if pip is bringing in all the deps simultaneously. I
-    # think matplotlib must not be using the setuptools "install_requires"
-    # option and this balks. We will not actually depend on matplotlib, but
-    # we do for now.
+    install_requires=['sympy>=0.7.2', 'numpy'],
+
     extras_require={'doc': ['sphinx', 'numpydoc']},
     tests_require=['nose'],
     test_suite='nose.collector',

@@ -17,11 +17,9 @@ __all__ = ['Shape', \
            ]
 
 
-from matplotlib.colors import ColorConverter
 from sympy.physics.mechanics import Point, ReferenceFrame
 import numpy as np
 
-convert = ColorConverter()
 
 class Shape(object):
     """
@@ -55,8 +53,6 @@ class Shape(object):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>>#These can be changed later too ..
     >>> s.name = 'my-shape1'
     >>> s.name
@@ -69,8 +65,6 @@ class Shape(object):
     'my-shape2'
     >>> a.color
     'red'
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -86,7 +80,6 @@ class Shape(object):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
 
     @property
@@ -120,13 +113,6 @@ class Shape(object):
                                pydy_viz.colors module''')
         else:
             self._color = new_color
-            self._color_rgb = convert.to_rgb(new_color)
-
-    def color_in_rgb(self):
-        """Returns the rgb value of the
-           defined shape color.
-        """
-        return self._color_rgb
 
     def generate_dict(self):
         """
@@ -170,8 +156,6 @@ class Cube(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>>s.length
     10
     >>>#These can be changed later too ..
@@ -191,8 +175,7 @@ class Cube(Shape):
     'red'
     >>> a.length
     10
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
+
 
     """
 
@@ -208,7 +191,6 @@ class Cube(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(length, (int, float)):
             raise TypeError('''Length should be a float or int''')
@@ -273,8 +255,6 @@ class Cylinder(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>> s.length
     10
     >>> s.radius
@@ -301,8 +281,7 @@ class Cylinder(Shape):
     10
     >>> a.radius
     5
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
+
 
     """
 
@@ -320,7 +299,6 @@ class Cylinder(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(length, (int, float)):
             raise TypeError('''Length should be a float or int''')
@@ -400,8 +378,6 @@ class Cone(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>> s.length
     10
     >>> s.radius
@@ -428,8 +404,6 @@ class Cone(Shape):
     10
     >>> a.radius
     5
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -447,7 +421,6 @@ class Cone(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(length, (int, float)):
             raise TypeError('''Length should be a float or int''')
@@ -527,8 +500,6 @@ class Sphere(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>>s.radius
     10
     >>>#These can be changed later too ..
@@ -548,8 +519,6 @@ class Sphere(Shape):
     'red'
     >>> a.radius
     10
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -565,7 +534,6 @@ class Sphere(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(radius, (int, float)):
             raise TypeError('''Radius should be a float or int''')
@@ -629,8 +597,6 @@ class Circle(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>>s.radius
     10
     >>>#These can be changed later too ..
@@ -650,8 +616,6 @@ class Circle(Shape):
     'red'
     >>> a.radius
     10
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -667,7 +631,6 @@ class Circle(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(radius, (int, float)):
             raise TypeError('''Radius should be a float or int''')
@@ -731,8 +694,6 @@ class Plane(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>> s.length
     10
     >>> s.width
@@ -759,8 +720,6 @@ class Plane(Shape):
     10
     >>> a.width
     5
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -778,7 +737,6 @@ class Plane(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(length, (int, float)):
             raise TypeError('''Length should be a float or int''')
@@ -860,8 +818,6 @@ class Tetrahedron(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>>s.radius
     10
     >>>#These can be changed later too ..
@@ -881,8 +837,6 @@ class Tetrahedron(Shape):
     'red'
     >>> a.radius
     10
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -898,7 +852,6 @@ class Tetrahedron(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(radius, (int, float)):
             raise TypeError('''Radius should be a float or int''')
@@ -964,8 +917,6 @@ class Octahedron(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>>s.radius
     10
     >>>#These can be changed later too ..
@@ -985,8 +936,6 @@ class Octahedron(Shape):
     'red'
     >>> a.radius
     10
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -1002,7 +951,6 @@ class Octahedron(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(radius, (int, float)):
             raise TypeError('''Radius should be a float or int''')
@@ -1068,8 +1016,6 @@ class Icosahedron(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>>s.radius
     10
     >>>#These can be changed later too ..
@@ -1089,8 +1035,6 @@ class Icosahedron(Shape):
     'red'
     >>> a.radius
     10
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -1106,7 +1050,6 @@ class Icosahedron(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(radius, (int, float)):
             raise TypeError('''Radius should be a float or int''')
@@ -1170,8 +1113,6 @@ class Torus(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>> s.radius
     10
     >>> s.tube_radius
@@ -1198,8 +1139,6 @@ class Torus(Shape):
     10
     >>> a.tube_radius
     5
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -1217,7 +1156,6 @@ class Torus(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(radius, (int, float)):
             raise TypeError('''Length should be a float or int''')
@@ -1297,8 +1235,6 @@ class TorusKnot(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>> s.radius
     10
     >>> s.tube_radius
@@ -1325,8 +1261,6 @@ class TorusKnot(Shape):
     10
     >>> a.tube_radius
     5
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -1344,7 +1278,6 @@ class TorusKnot(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(radius, (int, float)):
             raise TypeError('''Length should be a float or int''')
@@ -1425,8 +1358,6 @@ class Tube(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>> s.points
     [[1, 2, 1], [2, 1, 1], [2, 3, 4]]
     >>>#These can be changed later too ..
@@ -1451,8 +1382,6 @@ class Tube(Shape):
     12
     >>> a.points
     [[1, 2, 1], [2, 1, 1], [2, 3, 4]]
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -1470,7 +1399,6 @@ class Tube(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if not isinstance(radius, (int, float)):
             raise TypeError('''Radius should be either an
@@ -1550,8 +1478,6 @@ class Mesh(Shape):
     'unnamed'
     >>> s.color
     'grey'
-    >>> s.color_in_rgb()
-    (0.5019607843137255, 0.5019607843137255, 0.5019607843137255)
     >>> s.points
     [[1, 2, 1], [2, 1, 1], [2, 3, 4]]
     >>>#These can be changed later too ..
@@ -1571,8 +1497,6 @@ class Mesh(Shape):
     'red'
     >>> a.points
     [[1, 2, 1], [2, 1, 1], [2, 3, 4]]
-    >>> a.color_in_rgb()
-    (1.0, 0.0, 0.0)
 
     """
 
@@ -1590,7 +1514,6 @@ class Mesh(Shape):
                                pydy_viz.colors module''')
         else:
             self._color = color
-            self._color_rgb = convert.to_rgb(color)
 
         if points is None:
             raise TypeError('''Points should be defined for a mesh''')
