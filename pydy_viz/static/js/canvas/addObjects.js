@@ -15,11 +15,8 @@ Canvas.prototype.addControls = function(){
 
 Canvas.prototype.resetControls = function() {
 /**
- * This prototype function simply calls the controls reset method
- * which were defined in initialize function.
- * It generates a controlsID, which contains the return value 
- * of requestAnimationFrame, and can be used to call 
- * cancelAnimationFrame
+ * This prototype function calls the controls reset method
+ * for the Primary Controls(canvas.prototype.primaryControls).
  */        
     primaryControls.reset();
 
