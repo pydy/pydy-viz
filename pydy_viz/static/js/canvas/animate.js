@@ -1,5 +1,12 @@
 
 Canvas.prototype.startAnimation = function(){
+/**
+ * This prototype function kick starts the animation.
+ * It iterates over the frames and apply transformation matrices
+ * from Simulation Matrix of that frame, iteratively.
+ * by default animation is done for a single loop,
+ * which can be changed to looped by the check button from the UI.
+ */    
         
     for(var key in JSONObj.frames){
       Canvas.prototype._animate(key, Canvas.prototype.animationCounter);
@@ -18,12 +25,16 @@ Canvas.prototype.startAnimation = function(){
 };
 
 Canvas.prototype._animate = function(key, counter)
+/**
+ * This prototype function is a helper function for 
+ * Canvas.prototype.startAnimation
+ * It is used to apply transformation matrices to the frames.
+ */
       {
           console.log(Canvas.prototype.scene.children[4].children[key]);
           var _element = JSONObj.frames[key].simulation_matrix[counter];
           var matrix = new THREE.Matrix4();
           matrix.elements = _element;
-          // TODO Replace exact number by getObjectbyName ..
           console.log("key, counter, element:" + key, counter, _element);
           
           Canvas.prototype.scene.getObjectByName("frames").children[key].matrix.identity();
@@ -33,10 +44,18 @@ Canvas.prototype._animate = function(key, counter)
 
 
 Canvas.prototype.pauseAnimation = function(){
+/**
+ * This prototype function pauses the animation, but retains the
+ * current animation frame.
+ */    
     cancelAnimationFrame(Canvas.prototype.animationID);
 
 };
 Canvas.prototype.stopAnimation = function(){
+/**
+ * This prototype function stops the animation, and resets 
+ * current animation frame to 0.
+ */    
     Canvas.prototype.animationCounter = 0;
     cancelAnimationFrame(Canvas.prototype.animationID);
     for(var key in JSONObj.frames){

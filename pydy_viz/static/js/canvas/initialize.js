@@ -1,5 +1,5 @@
 var Canvas = function(JSONObj) {
- /**
+/**
  * This function acts as a class constructor for Canvas class
  * It takes the JSON Object variable as the argument, which contains
  * all the data in the JSON format.
@@ -44,13 +44,20 @@ Canvas.prototype.cameraCounter = 0;
 
 Canvas.prototype.animationSpeed = parseInt($("#animationSpeed").val())
 Canvas.prototype.initialize = function(){
-    /**
-    * This function acts as a class constructor for Canvas class
-    * It takes the JSON Object variable as the argument, which contains
-    * all the data in the JSON format.
-    * It binds onClick methods of certain Divs on the frontend
-    * with some Canvas.prototype functions.
-    */
+
+/**
+ * This prototype function initializes the starting canvas, on which
+ * all the visualizations are drawn. 
+ * It adds following to the canvas:
+ *  - A Primary Camera
+ *  - Primary Trackball Controls
+ *  - A Primary Light
+ *  - Axes
+ *  - Grid
+ *  - A Div for displaying total number of frames.
+ *  - A Div for displaying the current frame animation is
+ *    running on.
+ */
 
 	this.renderer = new THREE.WebGLRenderer();
 	this.renderer.setSize(JSONObj.width, JSONObj.height);

@@ -1,4 +1,12 @@
 Canvas.prototype.addControls = function(){
+/**
+ * This prototype function adds initializes the Primary Controls,
+ * which were defined in initialize function.
+ * It generates a controlsID, which contains the return value 
+ * of requestAnimationFrame, and can be used to call 
+ * cancelAnimationFrame
+ */    
+
     primaryControls.update();
     renderer.render(scene, primaryCamera);
     this.controlsID = requestAnimationFrame(Canvas.prototype.addControls);
@@ -6,11 +14,24 @@ Canvas.prototype.addControls = function(){
 
 
 Canvas.prototype.resetControls = function() {
-primaryControls.reset();
+/**
+ * This prototype function simply calls the controls reset method
+ * which were defined in initialize function.
+ * It generates a controlsID, which contains the return value 
+ * of requestAnimationFrame, and can be used to call 
+ * cancelAnimationFrame
+ */        
+    primaryControls.reset();
 
 };
 
 Canvas.prototype.addCameras = function() {
+/**
+ * This prototype function parses the JSON Object for cameras
+ * and adds them to the scene.
+ * All the cameras are stored in a Canvas.cameras object,
+ * which is an instance of THREE.Object3D();
+ */    
     for(var key in JSONObj.cameras){
         var _camera = JSONObj.cameras[key];
         
@@ -51,6 +72,12 @@ Canvas.prototype.addCameras = function() {
 };
 
 Canvas.prototype.addLights = function() {
+/**
+ * This prototype function parses the JSON Object for lights
+ * and adds them to the scene.
+ * All the lights are stored in a Canvas.lights object,
+ * which is an instance of THREE.Object3D();
+ */    
     for(var key in JSONObj.lights){
         var _light = JSONObj.lights[key];
         
@@ -87,6 +114,12 @@ Canvas.prototype.addLights = function() {
 };
 
 Canvas.prototype.addFrames = function(){
+/**
+ * This prototype function parses the JSON Object for frames
+ * and adds them to the scene.
+ * All the frames are stored in a Canvas.frames object,
+ * which is an instance of THREE.Object3D();
+ */    
     for(var key in JSONObj.frames){
         var _frame = JSONObj.frames[key];
         console.log(_frame);
@@ -194,7 +227,4 @@ Canvas.prototype.addFrames = function(){
     this.frames.children[key].matrixAutoUpdate = false;
     
     }
-    
-    
-    
 };

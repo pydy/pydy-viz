@@ -1,6 +1,6 @@
 
 Canvas.prototype.switchCamera = function(){
-
+    
     Canvas.prototype.cameraCounter++;
     if(Canvas.prototype.cameraCounter >=Canvas.prototype.cameras.children.length)
     {
