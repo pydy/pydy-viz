@@ -103,12 +103,18 @@ class VisualizationFrame(object):
         except AttributeError:
             #It is not a rigidbody, hence this arg should be a
             #reference frame
-            self._reference_frame = args[i]
-            i += 1
+            try:
+                dcm = args[i]._dcm_dict
+                self._reference_frame = args[i]
+                i += 1
+            except AttributeError:
+                raise TypeError(''' A ReferenceFrame is to be supplied
+                                   before a Particle/Point. ''')    
 
             #Now next arg can either be a Particle or point
             try:
                 self._origin = args[i].get_point()
+                
             except AttributeError:
                 self._origin = args[i]
 
@@ -282,10 +288,8 @@ class VisualizationFrame(object):
             args = np.hstack((states, constant_values))
             new = self._numeric_transform(*args)
 
-        print 'N:', n
-        print 'new:', new
+        
         self._visualization_matrix = new.reshape(n, 16)
-        print 'after reshape:', self._visualization_matrix
         return self._visualization_matrix
 
     def generate_visualization_dict(self):
