@@ -316,24 +316,45 @@ class Scene(object):
                                  separators=(',', ': ')))
         outfile.close()
 
-    def _copy_static_dir(self):
+    def create_static(self):
         """
         Copies all the static files required in the
         visualization to the current working directory
         The files and sub directories are stored within
-        a hidden directory named .pydy_viz in the current
+        a directory named static in the current
         working directory.
-        Working directory can be cleaned by calling _cleanup()
-        method, which deletes the .pydy_viz directory.
+   
+        This method is used to output static files for embedding
+        the visualizations in the static webpages. Simply copy 
+        the contents of static directory in the relevant directory
+        for embedding in a static website.
 
         """
-        dst = os.path.join(os.getcwd(), '.pydy_viz')
-        os.mkdir(dst)
-        src = os.path.join(os.path.dirname(pydy_viz.__file__), 'static')
-        distutils.dir_util.copy_tree(src, dst)
+        dst = os.path.join(os.getcwd(), 'static')
+        try:
+            os.mkdir(dst) 
+        except OSError:
+            print 'Directory already exists, refreshing contents..'
 
-    def _cleanup(self):
-        distutils.dir_util.remove_tree(os.path.join(os.getcwd(), '.pydy_viz'))
+        src = os.path.join(os.path.dirname(pydy_viz.__file__), 'static')
+        print "Copying static data.."
+        distutils.dir_util.copy_tree(src, dst)
+        print "Copying Simulation data..."
+        _outfile_loc = os.path.join(os.getcwd(), 'static','data.json')
+        outfile = open(_outfile_loc,"w")
+        #For static rendering, we need to define json data as a 
+        #JavaScript variable.
+        outfile.write('var JSONObj=')
+        outfile.write(json.dumps(self._data_dict, indent=4,
+                                 separators=(',', ': ')))
+        outfile.write(';')
+        outfile.close()
+        print "All Done!"
+
+    def cleanup_static(self):
+        print 'Cleaning up static directory..'
+        distutils.dir_util.remove_tree(os.path.join(os.getcwd(), 'static'))
+        print 'All Done!'
 
     def _display_from_interpreter(self):
         server = Server(json=self.saved_json_file)
