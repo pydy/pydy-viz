@@ -1,6 +1,12 @@
 pydy-viz
 ========
 
+**Notice**
+
+**pydy-viz has been merged into the main pydy repository. This independent
+project is now deprecated, all development and subsequent releases will be from
+http://github.com/pydy/pydy.**
+
 Visualization of multibody systems generated with PyDy.
 
 Installation
@@ -51,18 +57,6 @@ These are alternative ways to run the Python tests::
    $ bin/test
    $ python setup.py nosetests
 
-For the Javascript tests the Jasmine and blanket.js libraries are used.  Both
-of these libraries are included in pydy-viz with the source. To run the
-Javascript tests, go to the javascript library directory::
-
-   $ cd pydy_viz/static/js
-
-Then run a simple HTTP Server with Python (the server is required due to some
-cross browser issues with blanket.js)::
-
-   $ python -m SimpleHTTPServer
-
-Now visit http://localhost:8000/SpecRunner.html in a webgl compliant browser.
 
 Documentation
 =============
